@@ -1,0 +1,31 @@
+Una condición "falsy" es un valor que, al evaluarse en un contexto booleano, se interpreta como false.
+
+Ejemplos en PHP (falsy):
+- false
+- 0 / 0.0
+- "" (string vacío)
+- "0"
+- [] (array vacío)
+- null
+
+Ejemplos en JavaScript (falsy):
+- false
+- 0, -0
+- 0n (BigInt cero)
+- "" (string vacío)
+- null
+- undefined
+- NaN
+
+Ejemplos concretos (3 por lenguaje):
+
+PHP:
+- if (0) { }           // no entra
+- if ("") { }          // no entra
+- if (null) { }        // no entra
+
+JavaScript:
+- if (0) { }           // no entra
+- if ("") { }          // no entra
+- if (NaN) { }         // no entra
+

@@ -1,0 +1,15 @@
+En SQL:
+
+- INNER JOIN
+  - Devuelve solo las filas que tienen coincidencia en ambas tablas según la condición ON.
+  - Si no existe match, la fila se excluye del resultado.
+
+- LEFT JOIN (LEFT OUTER JOIN)
+  - Devuelve todas las filas de la tabla izquierda (la primera en el FROM) y, si hay coincidencia, los datos de la derecha.
+  - Cuando no hay match, las columnas de la tabla derecha llegan como NULL.
+
+Un ejemplo conceptual para este caso seria:
+Si tengo users (izquierda) y orders (derecha):
+- INNER JOIN -> solo usuarios con órdenes.
+- LEFT JOIN  -> todos los usuarios, tengan o no órdenes (las órdenes serán NULL si no existen).
+

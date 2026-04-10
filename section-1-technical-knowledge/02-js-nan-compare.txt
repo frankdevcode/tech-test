@@ -1,0 +1,12 @@
+En JavaScript, la expresión:
+
+- NaN == NaN  -> false
+- NaN === NaN -> false
+
+Motivo: NaN representa un valor numérico inválido/indefinido, y por especificación IEEE 754 no es igual a ningún valor, ni siquiera a sí mismo.
+
+Formas correctas de verificar NaN:
+
+- Number.isNaN(valor) (opción más recomendable): no hace coerción; solo true si el valor es NaN.
+- isNaN(valor): hace coerción, puede dar true para valores no numéricos como en este ejemplo. (ej: isNaN("hola") -> true).
+

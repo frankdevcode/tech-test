@@ -1,0 +1,14 @@
+En PHP:
+
+- == (igualdad débil): compara valores haciendo conversión de tipos (type juggling) si es necesario.
+  Ejemplos:
+  - "5" == 5  -> true
+  - 0 == false -> true
+
+- === (igualdad estricta): compara valor y tipo; no hace conversión de tipos.
+  Ejemplos:
+  - "5" === 5 -> false
+  - 0 === false -> false
+
+En general prefiero === para evitar comparaciones ambiguas y bugs por conversiones implícitas.
+

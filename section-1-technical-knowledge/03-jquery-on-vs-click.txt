@@ -1,0 +1,16 @@
+En jQuery:
+
+- .click(handler)
+  - Este es un atajo (shorthand) para enlazar el evento click directamente al/los elementos actuales.
+  - No soporta delegación.
+  - Ejemplo: $("#btn").click(fn) equivale a $("#btn").on("click", fn)
+
+- .on("click", handler) / .on("click", selector, handler)
+  - Es la API general para enlazar eventos como (click, input, submit, etc.).
+  - Permite:
+    - Delegación de eventos que son útil para elementos dinámicos: $(document).on("click", ".item", fn)
+    - Namespaces: .on("click.ui", fn) y .off("click.ui")
+    - Enlazar múltiples eventos en una sola llamada.
+
+En proyectos reales, .on suele ser preferible porque es más flexible y funciona bien con contenido agregado dinámicamente.
+
