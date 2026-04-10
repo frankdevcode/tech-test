@@ -1,0 +1,67 @@
+Objetivo del modelo:
+- Registrar visitas a puntos de gestión.
+- Analizar: (1) qué tan lejos está un punto de otro, (2) cuáles puntos reciben más visitas, (3) cuáles puntos tienen visitas más demoradas.
+
+Propuesta (relacional, SQL):
+
+1) Catálogo de puntos (dimensión principal)
+
+CREATE TABLE points (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(150) NOT NULL,
+  code VARCHAR(50) NULL,
+  latitude DECIMAL(10,7) NOT NULL,
+  longitude DECIMAL(10,7) NOT NULL,
+  created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  UNIQUE KEY uq_points_code (code)
+);
+
+2) Registro de visitas (hechos)
+
+CREATE TABLE visits (
+  id BIGINT AUTO_INCREMENT PRIMARY KEY,
+  point_id INT NOT NULL,
+  visitor_id INT NULL,
+  started_at DATETIME NOT NULL,
+  ended_at DATETIME NULL,
+  status VARCHAR(30) NOT NULL DEFAULT 'started',
+  notes VARCHAR(500) NULL,
+  created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  CONSTRAINT fk_visits_point FOREIGN KEY (point_id) REFERENCES points (id),
+  INDEX idx_visits_point_started (point_id, started_at),
+  INDEX idx_visits_started (started_at),
+  INDEX idx_visits_ended (ended_at)
+);
+
+Medida de duración:
+- duration_seconds = TIMESTAMPDIFF(SECOND, started_at, ended_at)
+  (solo cuando ended_at no es NULL)
+
+Analítica solicitada:
+
+A) Distancia entre puntos
+- Con latitude/longitude en points, se puede calcular distancia aproximada con Haversine desde SQL o en capa de aplicación.
+- Para análisis frecuente, alternativa: tabla precalculada de distancias point_distances(from_point_id, to_point_id, distance_meters) o un proceso batch que la actualice.
+
+B) Puntos con mayor cantidad de visitas
+
+SELECT point_id, COUNT(*) AS total_visits
+FROM visits
+GROUP BY point_id
+ORDER BY total_visits DESC;
+
+C) Puntos donde más se demoran las visitas (promedio/percentiles)
+
+SELECT
+  point_id,
+  AVG(TIMESTAMPDIFF(SECOND, started_at, ended_at)) AS avg_duration_seconds,
+  MAX(TIMESTAMPDIFF(SECOND, started_at, ended_at)) AS max_duration_seconds
+FROM visits
+WHERE ended_at IS NOT NULL
+GROUP BY point_id
+ORDER BY avg_duration_seconds DESC;
+
+Notas:
+- started_at/ended_at permiten medir duración real; status cubre casos abiertos (visita en progreso).
+- Los índices soportan reportes por punto y por rango de fechas (últimos 30 días, etc.).
+
