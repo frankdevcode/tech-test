@@ -1,0 +1,12 @@
+¿En la Informatica y en específico en el Desarrollo de Software que es lo más importante antes de iniciar con el Desarrollo.?
+
+Antes de iniciar el desarrollo, lo más importante es entender con precisión el problema y el objetivo de negocio: qué se busca resolver, para quién, con qué restricciones y cómo se medirá el éxito.
+
+En concreto, reviso:
+- Alcance y requerimientos: qué entra y qué no entra.
+- Casos de uso y datos: entradas, salidas, reglas, validaciones, errores esperados.
+- Restricciones: seguridad, performance, compatibilidad, tiempo, presupuesto.
+- Plan de entrega: hitos, riesgos y una estrategia de pruebas mínima.
+
+Cuando esa base está clara, el desarrollo es más rápido y con menos retrabajo, porque las decisiones técnicas (estructura, endpoints, base de datos, UI) se alinean al objetivo y no a suposiciones.
+

@@ -1,0 +1,14 @@
+¿Qué consideras una buena práctica que aplicas siempre en tus desarrollos y por qué?
+
+Una buena práctica que aplico siempre es diseñar y validar contratos claros entre capas (entrada/salida) antes de escribir lógica compleja.
+
+En la práctica significa:
+- Validar datos de entrada lo más cerca posible del borde (request, formulario, payload).
+- Normalizar y tipar/estructurar los datos antes de pasarlos a la lógica de negocio.
+- Definir respuestas consistentes (códigos HTTP, estructura de JSON, mensajes de error) para que el cliente no tenga que adivinar.
+
+¿Por qué lo hago?
+- Reduce bugs “silenciosos” por datos inesperados.
+- Hace el código más testeable y más fácil de mantener.
+- Facilita que otra persona (o yo en 3 meses) pueda extender la solución sin romper compatibilidad.
+

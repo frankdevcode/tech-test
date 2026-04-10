@@ -1,0 +1,13 @@
+¿Cuándo y por qué usar GIT y GitHub?
+
+Uso Git desde el día 1 de un proyecto, incluso si estoy trabajando solo, porque versionar es parte de la seguridad y mantenibilidad del desarrollo.
+
+¿Cuándo usar Git?
+- Siempre que exista código (o infraestructura) que pueda cambiar: desde un script pequeño hasta un producto completo.
+- Especialmente cuando hay iteración (prueba/error), necesidad de revertir o comparar cambios.
+
+¿Por qué Git y GitHub?
+- Git: control de versiones local, historial auditable, ramas para trabajar sin "romper" main, y la capacidad de volver atrás con confianza.
+- GitHub: colaboración (PRs, code review), issues, trazabilidad, CI/CD, y un punto central para compartir y desplegar.
+
+Puedo decir que Git es el mecanismo; GitHub es el ecosistema que vuelve el trabajo visible, revisable y automatizable.
